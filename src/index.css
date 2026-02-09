@@ -1,0 +1,187 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Fonts */
+  --font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-content: 'Source Sans 3', 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #FAFAF8;
+  --foreground: #1A1A18;
+  --card: #FAFAF8;
+  --card-foreground: #1A1A18;
+  --popover: #FAFAF8;
+  --popover-foreground: #1A1A18;
+  --primary: #B5493A;
+  --primary-foreground: #FAFAF8;
+  --secondary: #F0EFEB;
+  --secondary-foreground: #1A1A18;
+  --muted: #F0EFEB;
+  --muted-foreground: #555550;
+  --accent: #F0EFEB;
+  --accent-foreground: #1A1A18;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #E0DFDA;
+  --input: #E0DFDA;
+  --ring: #B5493A;
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: #FAFAF8;
+  --sidebar-foreground: #1A1A18;
+  --sidebar-primary: #B5493A;
+  --sidebar-primary-foreground: #FAFAF8;
+  --sidebar-accent: #F0EFEB;
+  --sidebar-accent-foreground: #1A1A18;
+  --sidebar-border: #E0DFDA;
+  --sidebar-ring: #B5493A;
+
+  /* Content tokens */
+  --fg-faint: #8A8A82;
+  --accent-dim: #B5493A18;
+  --code-bg: #F0EFEB;
+  --code-border: #E2E1DC;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    font-size: 18px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    line-height: 1.78;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--accent-dim);
+    color: var(--primary);
+  }
+
+  /* Content typography */
+  main p {
+    margin-bottom: 1rem;
+  }
+  main strong {
+    font-weight: 500;
+    color: var(--foreground);
+  }
+  main a {
+    @apply text-primary;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s;
+  }
+  main a:hover {
+    opacity: 0.7;
+  }
+  main h3 {
+    font-family: var(--font-content);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 2.2rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+  }
+  main h4 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.78rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+    color: var(--muted-foreground);
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.84em;
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 4px;
+    padding: 0.12em 0.4em;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+}
+
+/* Syntax highlighting */
+.kw { color: #8B5CF6; }
+.str { color: #16803C; }
+.cm { color: #9E9E90; font-style: italic; }
+.fn { color: #C2590A; }
+.num:not(nav .num) { color: #1D71B8; }
+.prop { color: #B5493A; }
+.type { color: #7C3AED; }
+.op { color: #7A7A70; }
+
+/* Diagram highlights */
+.hl { color: #8B5CF6; font-weight: 500; }
+.hl2 { color: #16803C; }
+.hl3 { color: #C2590A; }
+.dim { color: #B0AFA8; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  html { font-size: 17px; }
+}
